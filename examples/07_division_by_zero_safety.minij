@@ -1,0 +1,9 @@
+// Example 07: Division by Zero Safety & Semantic Preservation
+// The optimizer deliberately does not fold division by zero at compile time,
+// ensuring the runtime ArithmeticException is preserved in both original
+// and optimized code.
+// Expected behavior: Throws ArithmeticException (division by zero)
+
+int zero = 0;
+int dangerous = 42 / zero;
+print(dangerous);

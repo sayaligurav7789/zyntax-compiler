@@ -1,0 +1,12 @@
+// Example 05: Dead Code Elimination
+// Demonstrates backward liveness analysis:
+// Unused user variables (dead1, dead2, dead3) and their intermediate temporaries
+// are completely eliminated, keeping only instructions that affect print(live).
+// Expected program output: 99
+
+int dead1 = 123 * 456;
+int dead2 = dead1 + 789;
+int dead3 = dead2 / 10;
+
+int live = 99;
+print(live);

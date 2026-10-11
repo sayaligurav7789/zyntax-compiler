@@ -1,0 +1,11 @@
+// Example 02: Constant Folding
+// Demonstrates compile-time evaluation of constant arithmetic trees.
+// Computes: ((100 - 20) * 2 + 40) / 10 % 7
+// Expected program output: 6
+
+int c1 = 100 - 20;
+int c2 = c1 * 2;
+int c3 = c2 + 40;
+int c4 = c3 / 10;
+int result = c4 % 7;
+print(result);

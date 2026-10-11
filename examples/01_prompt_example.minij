@@ -1,0 +1,8 @@
+// Example 01: Core Example from Prompt
+// Demonstrates constant folding (2 + 3 -> 5), forward constant propagation (a -> 5, 5 * 4 -> 20),
+// and dead code elimination of unused temporaries.
+// Expected program output: 20
+
+int a = 2 + 3;
+int b = a * 4;
+print(b);

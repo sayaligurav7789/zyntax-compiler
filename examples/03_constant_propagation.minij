@@ -1,0 +1,10 @@
+// Example 03: Constant Propagation
+// Demonstrates how constant values are tracked and propagated through
+// chains of variable assignments and used in expressions.
+// Expected program output: 45
+
+int base = 10;
+int factor = 4;
+int offset = 5;
+int calculation = base * factor + offset;
+print(calculation);

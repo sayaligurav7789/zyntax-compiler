@@ -1,0 +1,16 @@
+// Example 04: Safe Algebraic Simplification
+// Demonstrates reduction using arithmetic identities:
+// x + 0 -> x, x * 1 -> x, x - x -> 0, x * 0 -> 0, x / 1 -> x
+// Expected program output: 50, then 0, then 0
+
+int x = 50;
+int step1 = x + 0;
+int step2 = step1 * 1;
+int step3 = step2 / 1;
+print(step3);
+
+int step4 = step3 - step3;
+print(step4);
+
+int step5 = step3 * 0;
+print(step5);
