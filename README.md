@@ -216,7 +216,7 @@ mvn clean compile
 ```powershell
 mvn test
 ```
-The test suite executes 49 comprehensive unit and integration tests across:
+The test suite executes 53 comprehensive unit and integration tests across:
 * `LexerTest`: coordinate tracking, token types, comment handling, overflow checks.
 * `ParserTest`: precedence climbing, associativity, grouped expressions, syntax diagnostics.
 * `SemanticAnalyzerTest`: duplicate checks, scope verification, uninitialized variable checks.
@@ -227,6 +227,7 @@ The test suite executes 49 comprehensive unit and integration tests across:
 * `DeadCodeEliminationPassTest`: backward liveness, side-effect preservation.
 * `OptimizationPipelineTest`: fixpoint iteration, user example reduction.
 * `InterpreterTest`: AST & TAC interpretation, behavioral equivalence.
+* `MiniJavaWebServerTest`: HTTP endpoints, compiler JSON API, HTML serving.
 * `EndToEndIntegrationTest`: complete multi-file compilation pipelines.
 
 ### Package Executable JAR
@@ -335,6 +336,21 @@ minijava> int x = 10 * 5; print(x + 0);
   Optimized TAC: [print 50]
   Program Output: [50]
 ```
+
+### 5. Interactive Web Frontend & Compiler Visualizer (`ui` or `web`)
+```powershell
+java -jar target/minijava-optimizer-1.0.0.jar ui
+# or specify a custom port:
+java -jar target/minijava-optimizer-1.0.0.jar ui 8080
+```
+Launches an embedded HTTP server (zero external dependencies, powered by Java 21 standard library `com.sun.net.httpserver`) and opens the Web Visualizer at `http://localhost:8080`.
+* **Features:**
+  * In-browser MiniJava source editor with sample loader.
+  * Side-by-side Three-Address Code comparison (Original vs. Optimized) with syntax badges and reduction metrics.
+  * **Interactive Pass Stepper:** Step through each pass (CF $\to$ CP $\to$ AS $\to$ DCE) iteration-by-iteration with live diffs.
+  * Live Abstract Syntax Tree viewer.
+  * Symbol Table and Token Stream inspector.
+  * Execution output console and semantic equivalence verification badge.
 
 ---
 

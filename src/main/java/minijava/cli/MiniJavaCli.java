@@ -14,6 +14,7 @@ import minijava.optimizer.*;
 import minijava.parser.Parser;
 import minijava.semantic.SemanticAnalyzer;
 import minijava.semantic.SymbolTable;
+import minijava.web.MiniJavaWebServer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -43,6 +44,7 @@ public class MiniJavaCli {
                 case "run" -> handleRun(args);
                 case "compare" -> handleCompare(args);
                 case "repl" -> handleRepl();
+                case "ui", "web" -> handleWeb(args);
                 case "help", "--help", "-h" -> printHelp();
                 default -> {
                     System.err.println("Unknown command: '" + command + "'");
@@ -269,6 +271,31 @@ public class MiniJavaCli {
         return Files.readString(Path.of(filePath));
     }
 
+    private static void handleWeb(String[] args) throws Exception {
+        int port = 8080;
+        if (args.length >= 2) {
+            try {
+                port = Integer.parseInt(args[1]);
+            } catch (NumberFormatException ignored) {}
+        }
+        MiniJavaWebServer webServer = new MiniJavaWebServer(port);
+        webServer.start();
+        String url = "http://localhost:" + webServer.getPort();
+        System.out.println("=================================================");
+        System.out.println("MiniJava Optimizer Web Explorer & Visualizer");
+        System.out.println("Server running at: " + url);
+        System.out.println("Press Ctrl+C to stop the server.");
+        System.out.println("=================================================");
+
+        try {
+            if (java.awt.Desktop.isDesktopSupported() && java.awt.Desktop.getDesktop().isSupported(java.awt.Desktop.Action.BROWSE)) {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+            }
+        } catch (Exception ignored) {}
+
+        Thread.currentThread().join();
+    }
+
     private static void printHelp() {
         System.out.println("""
                 MiniJava Optimizer — Compiler Optimization Learning System (Java 21)
@@ -286,6 +313,7 @@ public class MiniJavaCli {
                   run <file> [--optimized]      Execute program and show standard output
                   compare <file>                Compare original vs optimized IR and verify equivalence
                   repl                          Start interactive MiniJava optimization shell
+                  ui [port] / web [port]        Start interactive Web Compiler Explorer (default: 8080)
                   help                          Show this help message
                 """);
     }
