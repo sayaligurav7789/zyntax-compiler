@@ -368,10 +368,10 @@ public class WebUiAssets {
 <body>
   <header>
     <div class="brand">
-      <div class="brand-logo">MJ</div>
+      <div class="brand-logo">ZX</div>
       <div>
-        <div class="brand-title">MiniJava Optimizer</div>
-        <div class="brand-subtitle">Compiler Optimization Learning System & Explorer</div>
+        <div class="brand-title">ZYNTAX</div>
+        <div class="brand-subtitle">Code Optimization Engine</div>
       </div>
     </div>
     <div class="controls">

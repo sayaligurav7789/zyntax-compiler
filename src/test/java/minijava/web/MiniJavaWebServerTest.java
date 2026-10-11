@@ -45,8 +45,8 @@ class MiniJavaWebServerTest {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
-        assertTrue(response.body().contains("MiniJava Optimizer"));
-        assertTrue(response.body().contains("Compiler Optimization Learning System"));
+        assertTrue(response.body().contains("ZYNTAX"));
+        assertTrue(response.body().contains("Code Optimization Engine"));
     }
 
     @Test
